@@ -15,7 +15,7 @@ services:
     container_name: manhattan-psql
     restart: always
     environment:
-      - POSTGRES_DB=i-am-your-father
+      - POSTGRES_DB=manhattan
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
     ports:
