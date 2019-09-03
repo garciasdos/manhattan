@@ -16,4 +16,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
 
+RUN wget https://get.symfony.com/cli/installer -O - | bash
+RUN echo 'export PATH="$HOME/.symfony/bin:$PATH"' >> /root/.bashrc
+
 RUN cp  /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
