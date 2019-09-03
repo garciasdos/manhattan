@@ -12,7 +12,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method EventSubcategory[]    findAll()
  * @method EventSubcategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EventSubcategoryRepository extends ServiceEntityRepository
+class DoctrineEventSubcategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

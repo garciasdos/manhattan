@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EventCategoryRepository")
+ * @ORM\Entity(repositoryClass="DoctrineEventCategoryRepository")
  */
 class EventCategory
 {
