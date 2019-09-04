@@ -27,7 +27,7 @@ services:
     image: nginx:latest
     container_name: manhattan-nginx
     ports:
-      - "8444:80"
+      - "80:80"
     volumes:
       - ./:/var/www/html/
       - ./etc/docker/nginx/manhattan.conf:/etc/nginx/conf.d/default.conf
