@@ -6,9 +6,18 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
+import '../scss/app.scss';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-const $ = require('jquery');
+import $ from 'jquery';
+import 'bootstrap'; // adds functions to jQuery
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+// uncomment if you have legacy code that needs global variables
+//global.$ = $;
+
+$('.dropdown-toggle').dropdown();
+$('.custom-file-input').on('change', function(event) {
+    let inputFile = event.currentTarget;
+    $(inputFile).parent()
+        .find('.custom-file-label')
+        .html(inputFile.files[0].name);
+});
