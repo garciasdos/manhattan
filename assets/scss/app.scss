@@ -1,5 +1,9 @@
 // customize some Bootstrap variables
 $primary: darken(#428bca, 20%);
 
+.jumbotron {
+  background-image: url("/build/images/events-background.jpg");
+  background-size: cover;
+}
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap';
