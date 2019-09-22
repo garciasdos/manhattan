@@ -1,6 +1,10 @@
 $spacer : 2rem !default;
 $primary: darken(#428bca, 20%);
 $clear: #fafafa;
+$body-bg: #F1F0E8;
+$body-color: #111;
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap');
+$font-family-base: 'Source Serif Pro', serif;
 
 $spacers: (
         0: 0,
@@ -24,6 +28,27 @@ $spacers: (
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   color: $clear;
+}
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  animation:
+          typing 3.5s steps(40, end),
+          blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
 }
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap';
