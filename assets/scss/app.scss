@@ -1,9 +1,29 @@
-// customize some Bootstrap variables
+$spacer : 2rem !default;
 $primary: darken(#428bca, 20%);
+$clear: #fafafa;
 
-.jumbotron {
-  background-image: url("/build/images/events-background.jpg");
+$spacers: (
+        0: 0,
+        1: ($spacer * .25),
+        2: ($spacer * .5),
+        3: $spacer,
+        4: ($spacer * 1.5),
+        5: ($spacer * 3),
+        6: ($spacer * 5)
+);
+
+.bg-image {
+  background-image: url('/build/images/events-background.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
+}
+
+.pepe {
+  line-height: 1;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: $clear;
 }
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap';
