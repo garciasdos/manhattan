@@ -45,10 +45,5 @@ $spacers: (
   to { width: 100% }
 }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange; }
-}
 // the ~ allows you to reference things in node_modules
 @import '~bootstrap';
