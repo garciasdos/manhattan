@@ -5,10 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="DoctrineEventCategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\EventCategoryRepository")
  */
 class EventCategory
 {
@@ -28,13 +32,13 @@ class EventCategory
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\EventSubcategory", mappedBy="category", orphanRemoval=true)
      */
-    private $events;
+    private $eventSubcategories;
 
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->eventSubcategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,30 +59,30 @@ class EventCategory
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection|EventSubcategory[]
      */
-    public function getEvents(): Collection
+    public function getEventSubcategories(): Collection
     {
-        return $this->events;
+        return $this->eventSubcategories;
     }
 
-    public function addEvent(Event $event): self
+    public function addEventSubcategory(EventSubcategory $eventSubcategory): self
     {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->setCategory($this);
+        if (!$this->eventSubcategories->contains($eventSubcategory)) {
+            $this->eventSubcategories[] = $eventSubcategory;
+            $eventSubcategory->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeEvent(Event $event): self
+    public function removeEventSubcategory(EventSubcategory $eventSubcategory): self
     {
-        if ($this->events->contains($event)) {
-            $this->events->removeElement($event);
+        if ($this->eventSubcategories->contains($eventSubcategory)) {
+            $this->eventSubcategories->removeElement($eventSubcategory);
             // set the owning side to null (unless already changed)
-            if ($event->getCategory() === $this) {
-                $event->setCategory(null);
+            if ($eventSubcategory->getCategory() === $this) {
+                $eventSubcategory->setCategory(null);
             }
         }
 

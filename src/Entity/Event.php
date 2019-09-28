@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="DoctrineEventRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
  */
 class Event
 {
@@ -21,12 +25,12 @@ class Event
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=70)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $subtitle;
 
@@ -36,14 +40,14 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="date_immutable", nullable=true)
      */
-    private $startDate;
+    private $startedAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @ORM\Column(type="date_immutable", nullable=true)
      */
-    private $endDate;
+    private $endedAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -51,14 +55,9 @@ class Event
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EventCategory", inversedBy="events")
-     */
-    private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\EventSubcategory", inversedBy="events")
@@ -87,7 +86,7 @@ class Event
         return $this->subtitle;
     }
 
-    public function setSubtitle(?string $subtitle): self
+    public function setSubtitle(string $subtitle): self
     {
         $this->subtitle = $subtitle;
 
@@ -106,26 +105,26 @@ class Event
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeImmutable
+    public function getStartedAt(): ?\DateTimeImmutable
     {
-        return $this->startDate;
+        return $this->startedAt;
     }
 
-    public function setStartDate(\DateTimeImmutable $startDate): self
+    public function setStartedAt(?\DateTimeImmutable $startedAt): self
     {
-        $this->startDate = $startDate;
+        $this->startedAt = $startedAt;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeImmutable
+    public function getEndedAt(): ?\DateTimeImmutable
     {
-        return $this->endDate;
+        return $this->endedAt;
     }
 
-    public function setEndDate(?\DateTimeImmutable $endDate): self
+    public function setEndedAt(?\DateTimeImmutable $endedAt): self
     {
-        $this->endDate = $endDate;
+        $this->endedAt = $endedAt;
 
         return $this;
     }
@@ -135,33 +134,21 @@ class Event
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getCategory(): ?EventCategory
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?EventCategory $category): self
-    {
-        $this->category = $category;
 
         return $this;
     }

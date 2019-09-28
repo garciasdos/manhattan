@@ -8,18 +8,18 @@ use App\Repository\EventRepository;
 
 class GetLastEvent
 {
-    /** @var EventRepository */
-    private $eventRepository;
-
-    public function __construct(EventRepository $eventRepository)
-    {
-        $this->eventRepository = $eventRepository;
-    }
-
-    public function execute(): Event
-    {
-        return $this->eventRepository->lastByStartDate();
-    }
+//    /** @var EventRepository */
+//    private $eventRepository;
+//
+//    public function __construct(EventRepository $eventRepository)
+//    {
+//        $this->eventRepository = $eventRepository;
+//    }
+//
+//    public function execute(): Event
+//    {
+//        return $this->eventRepository->lastByStartDate();
+//    }
 
 
 }

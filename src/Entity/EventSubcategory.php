@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ORM\Entity(repositoryClass="DoctrineEventSubcategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\EventSubcategoryRepository")
  */
 class EventSubcategory
 {
@@ -31,6 +31,12 @@ class EventSubcategory
      * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="subcategory")
      */
     private $events;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EventCategory", inversedBy="eventSubcategories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function __construct()
     {
@@ -81,6 +87,18 @@ class EventSubcategory
                 $event->setSubcategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?EventCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?EventCategory $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
