@@ -64,7 +64,7 @@ class Event
      */
     private $subcategory;
 
-    public function getId(): ?int
+    public function getId(): UuidInterface
     {
         return $this->id;
     }

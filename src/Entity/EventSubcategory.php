@@ -43,7 +43,7 @@ class EventSubcategory
         $this->events = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
