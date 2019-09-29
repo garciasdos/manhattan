@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
@@ -63,6 +65,16 @@ class Event
      * @ORM\ManyToOne(targetEntity="App\Entity\EventSubcategory", inversedBy="events")
      */
     private $subcategory;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\EventPhoto", mappedBy="event", orphanRemoval=true)
+     */
+    private $eventPhotos;
+
+    public function __construct()
+    {
+        $this->eventPhotos = new ArrayCollection();
+    }
 
     public function getId(): UuidInterface
     {
@@ -161,6 +173,37 @@ class Event
     public function setSubcategory(?EventSubcategory $subcategory): self
     {
         $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EventPhoto[]
+     */
+    public function getEventPhotos(): Collection
+    {
+        return $this->eventPhotos;
+    }
+
+    public function addEventPhoto(EventPhoto $eventPhoto): self
+    {
+        if (!$this->eventPhotos->contains($eventPhoto)) {
+            $this->eventPhotos[] = $eventPhoto;
+            $eventPhoto->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventPhoto(EventPhoto $eventPhoto): self
+    {
+        if ($this->eventPhotos->contains($eventPhoto)) {
+            $this->eventPhotos->removeElement($eventPhoto);
+            // set the owning side to null (unless already changed)
+            if ($eventPhoto->getEvent() === $this) {
+                $eventPhoto->setEvent(null);
+            }
+        }
 
         return $this;
     }

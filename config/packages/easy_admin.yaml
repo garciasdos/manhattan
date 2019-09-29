@@ -22,4 +22,24 @@ easy_admin:
                     - { property: 'subtitle', label: 'Subtítulo'}
                     - { property: 'startedAt', label: 'Fecha Inicio' , type: 'date'}
                     - { property: 'endedAt', label: 'Fecha Fin' , type: 'date'}
-
+                    -
+                        property: '$eventPhotos'
+                        label: 'Fotos'
+                        type: 'collection'
+            form:
+                form:
+                    title: "Añadir / Editar Eventos"
+                fields:
+#                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
+                    - title
+                    - subtitle
+                    - description
+                    - { property: 'startedAt', type_options: { widget: 'single_text' }}
+                    -
+                        property: 'eventPhotos'
+                        type: 'collection'
+                        type_options:
+                            entry_type: App\Form\EventPhotoFormType
+                            allow_delete: true
+                            allow_add: true
+                            by_reference: false
