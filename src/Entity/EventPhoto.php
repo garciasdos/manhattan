@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventPhotoRepository")
+ * @Vich\Uploadable
  */
 class EventPhoto
 {
@@ -29,17 +33,27 @@ class EventPhoto
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
-     * @Assert\Image()
+     * @var string
      */
-    private $url;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="user_contracts", fileNameProperty="contract")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      */
     private $title;
 
-    public function getId(): ?int
+    /**
+     * @var DateTime
+     */
+    private $updatedAt;
+
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
@@ -56,16 +70,32 @@ class EventPhoto
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function setImageFile(File $image = null)
     {
-        return $this->url;
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new DateTime('now');
+        }
     }
 
-    public function setUrl(string $url): self
+    public function getImageFile()
     {
-        $this->url = $url;
+        return $this->imageFile;
+    }
 
-        return $this;
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     public function getTitle(): ?string
@@ -78,5 +108,15 @@ class EventPhoto
         $this->title = $title;
 
         return $this;
+    }
+
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

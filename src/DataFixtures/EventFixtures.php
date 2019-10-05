@@ -16,7 +16,7 @@ class EventFixtures extends Fixture
             $event->setTitle('event '.$i);
             $event->setDescription('description ' . $i);
             $event->setSubtitle('subtitle ' . $i);
-            $event->setStartDate(new DateTimeImmutable());
+            $event->setStartedAt(new DateTimeImmutable());
             $event->setCreatedAt(new DateTimeImmutable());
             $manager->persist($event);
         }
