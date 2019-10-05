@@ -26,7 +26,7 @@ class EventPhoto
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="eventPhotos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="eventPhotos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $event;
@@ -38,7 +38,7 @@ class EventPhoto
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="user_contracts", fileNameProperty="contract")
+     * @Vich\UploadableField(mapping="event_images", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
@@ -53,7 +53,7 @@ class EventPhoto
      */
     private $updatedAt;
 
-    public function getId(): UuidInterface
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }
@@ -68,34 +68,6 @@ class EventPhoto
         $this->event = $event;
 
         return $this;
-    }
-
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new DateTime('now');
-        }
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-    public function getImage()
-    {
-        return $this->image;
     }
 
     public function getTitle(): ?string
@@ -118,5 +90,33 @@ class EventPhoto
     public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 }

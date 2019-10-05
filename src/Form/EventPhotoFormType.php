@@ -17,7 +17,7 @@ class EventPhotoFormType extends AbstractType
     {
         $builder
             // ...
-            ->add('url', FileType::class, [
+            ->add('imageFile', FileType::class, [
                 'label' => 'Foto',
                 // make it optional so you don't have to re-upload the PDF file
                 // everytime you edit the Product details

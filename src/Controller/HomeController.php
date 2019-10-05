@@ -21,10 +21,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $event = $this->getLastEvent->execute();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'Event'           => $event,
         ]);
     }
 }

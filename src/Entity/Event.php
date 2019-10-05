@@ -21,8 +21,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Event
 {
-
-
     /**
      * @var UuidInterface
      *
@@ -74,20 +72,13 @@ class Event
     private $subcategory;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string
+     * @ORM\OneToMany(targetEntity="App\Entity\EventPhoto", mappedBy="event", orphanRemoval=true)
      */
-    private $image;
-
-    /**
-     * @Vich\UploadableField(mapping="event_images", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
+    private $eventPhotos;
 
     public function __construct()
     {
-//        $this->eventPhotos = new ArrayCollection();
+        $this->eventPhotos = new ArrayCollection();
         $this->createdAt = new DateTime();
     }
 
@@ -192,34 +183,33 @@ class Event
         return $this;
     }
 
-    public function setImageFile(File $image = null)
+    /**
+     * @return Collection|EventPhoto[]
+     */
+    public function getEventPhotos(): Collection
     {
-        $this->imageFile = $image;
+        return $this->eventPhotos;
+    }
 
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new DateTime('now');
+    public function addEventPhoto(EventPhoto $eventPhoto): self
+    {
+        if (!$this->eventPhotos->contains($eventPhoto)) {
+            $this->eventPhotos[] = $eventPhoto;
+            $eventPhoto->setEvent($this);
         }
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    public function setImage(?string $image)
-    {
-        $this->image = $image;
 
         return $this;
     }
 
-    public function getImage()
+    public function removeEventPhoto(EventPhoto $eventPhoto): self
     {
-        return $this->image;
+        if ($this->eventPhotos->contains($eventPhoto)) {
+            $this->eventPhotos->removeElement($eventPhoto);
+            // set the owning side to null (unless already changed)
+            if ($eventPhoto->getEvent() === $this) {
+                $eventPhoto->setEvent(null);
+            }
+        }
     }
 
     public function __toString()

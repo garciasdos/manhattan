@@ -7,6 +7,26 @@ easy_admin:
         time:     'H:i'
         datetime: 'd/m/Y H:i:s'
     entities:
+        EventPhoto:
+            class: App\Entity\EventPhoto
+            help: 'Imágenes de eventos'
+            label: 'Fotos de eventos'
+            list:
+                title: "Fotos de Eventos"
+                actions:
+                    - { name: 'new', label: 'Añadir evento'}
+                    - { name: 'edit', label: 'Editar'}
+                    - { name: 'delete', label: 'Borrar'}
+                fields:
+                    - { property: 'title', label: 'Título' }
+                    - { property: 'image', type: 'image', base_path: '%app.path.event_images%' }
+            form:
+                form:
+                    title: "Añadir / Editar Fotos de Evento"
+                fields:
+                    - title
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - event
         Event:
             class: App\Entity\Event
             help: 'Administración de eventos'
@@ -31,4 +51,12 @@ easy_admin:
                     - title
                     - subtitle
                     - description
-                    - { property: 'imageFile', type: 'vich_image' }
+                    -
+                        property: 'eventPhotos'
+                        type: 'collection'
+                        type_options:
+                            entry_type: App\Form\EventPhotoFormType
+                            allow_delete: true
+                            allow_add: true
+                            by_reference: false
+
