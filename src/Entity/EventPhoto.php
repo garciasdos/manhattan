@@ -26,7 +26,7 @@ class EventPhoto
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="eventPhotos", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="eventPhotos")
      * @ORM\JoinColumn(nullable=false)
      */
     private $event;
@@ -118,5 +118,10 @@ class EventPhoto
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

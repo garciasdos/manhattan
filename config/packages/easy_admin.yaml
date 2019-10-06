@@ -47,7 +47,6 @@ easy_admin:
                 form:
                     title: "Añadir / Editar Eventos"
                 fields:
-#                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
                     - title
                     - subtitle
                     - description
@@ -56,7 +55,7 @@ easy_admin:
                         type: 'collection'
                         type_options:
                             entry_type: App\Form\EventPhotoFormType
-                            allow_delete: true
+                            allow_delete: false
                             allow_add: true
                             by_reference: false
 

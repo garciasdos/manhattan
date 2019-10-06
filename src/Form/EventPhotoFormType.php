@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EventPhotoFormType extends AbstractType
 {
@@ -17,11 +18,10 @@ class EventPhotoFormType extends AbstractType
     {
         $builder
             // ...
-            ->add('imageFile', FileType::class, [
-                'label' => 'Foto',
-                // make it optional so you don't have to re-upload the PDF file
-                // everytime you edit the Product details
-                'required' => false
+            ->add('imageFile', VichImageType::class, [
+                'download_label' => static function (EventPhoto $eventPhoto) {
+                    return $eventPhoto->getTitle();
+                },
             ])
             ->add('title')
             // ...

@@ -72,7 +72,13 @@ class Event
     private $subcategory;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\EventPhoto", mappedBy="event", orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\EventPhoto",
+     *     mappedBy="event",
+     *     fetch="EXTRA_LAZY",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
      */
     private $eventPhotos;
 
@@ -210,6 +216,8 @@ class Event
                 $eventPhoto->setEvent(null);
             }
         }
+
+        return $this;
     }
 
     public function __toString()
