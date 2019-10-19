@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}La Fábrica de Gomas{% endblock %}
 
 {% block body %}
     {% include 'navbar/navbar.html.twig' %}
@@ -16,14 +16,14 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-11 text-center rounded-1 text-light mt-2 mx-2 mx-md-0 mt-md-2 p-0 bg-image-events scale-in-top-d-3">
-                <a href="#" class="link">
+                <a href="{{ path('events') }}" class="link">
                 <div class="blurred rounded-1">
                     <p class="h2 m-0 p-5">Eventos</p>
                 </div>
                 </a>
             </div>
 
-            <div class="col-lg-12 col-md-11 text-center rounded-1 bg-gradient-primary text-light mt-2 mx-2 m-md-0 mt-md-2 scale-in-top-d-6">
+            <div class="col-lg-12 col-md-11 text-center rounded-1 bg-gradient-danger text-light mt-2 mx-2 m-md-0 mt-md-2 scale-in-top-d-6">
                 <p class="h2 m-0 p-5">Historia</p>
             </div>
         </div>

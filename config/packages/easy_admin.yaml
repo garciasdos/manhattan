@@ -50,6 +50,8 @@ easy_admin:
                     - title
                     - subtitle
                     - description
+                    - { property: 'startedAt', label: 'Fecha Inicio' , type: 'date'}
+                    - { property: 'endedAt', label: 'Fecha Fin' , type: 'date'}
                     -
                         property: 'eventPhotos'
                         type: 'collection'

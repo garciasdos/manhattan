@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @method Event|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +19,20 @@ class EventRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Event::class);
+    }
+
+    public function getLatestEvent(): ?Event
+    {
+        try {
+            return $this->createQueryBuilder('e')
+                ->select()
+                ->orderBy('e.startedAt', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (Exception $exception) {
+            throw new NotFoundHttpException();
+        }
     }
 
     // /**
