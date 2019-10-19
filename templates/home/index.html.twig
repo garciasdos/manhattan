@@ -4,34 +4,30 @@
 
 {% block body %}
     {% include 'navbar/navbar.html.twig' %}
-
-    <div class="container-fluid">
-        <div class="row mt-2">
-            <div class="col-md text-center px-5 mt-2">
-                <img src="{{ asset('/build/images/logo-lafabricadegomas-big.png') }}" class="img-fluid"
-                     alt="Responsive image">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-11 text-center rounded-1 bg-image-logo text-light mt-2 mx-2 m-md-0 mt-md-2 p-0 scale-in-center">
+                <div class="blurred rounded-1">
+                    <img src="{{ asset('/build/images/logo-lafabricadegomas-big.png') }}" class="img-fluid pt-2 px-2"
+                         alt="Responsive image">
+                    <p class="mt-2 h2 mb-0 pb-2">
+                        Tu espacio creativo en Pamplona.
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="row m-2">
-            <div class="col-md text-center">
-                <p class="focus-in-expand-1">
-                    Tu espacio creativo en Pamplona.
-                </p>
+            <div class="col-lg-12 col-md-11 text-center rounded-1 text-light mt-2 mx-2 mx-md-0 mt-md-2 p-0 bg-image-events scale-in-top-d-3">
+                <a href="#" class="link">
+                <div class="blurred rounded-1">
+                    <p class="h2 m-0 p-5">Eventos</p>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-lg-12 col-md-11 text-center rounded-1 bg-gradient-primary text-light mt-2 mx-2 m-md-0 mt-md-2 scale-in-top-d-6">
+                <p class="h2 m-0 p-5">Historia</p>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid p-0 ">
-        <div class="bg-image">
-            <div class="p-5  pepe">
-                <p class="display-4 text-center m-0 focus-in-expand-4">Eventos</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid p-0 ">
-            <div class="p-5">
-                <p class="display-4 text-center m-0 focus-in-expand-7">Historia</p>
-            </div>
-    </div>
+    {% include 'footer/footer.html.twig' %}
 {% endblock %}

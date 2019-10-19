@@ -1,34 +1,20 @@
-$spacer : 2rem !default;
-$primary: darken(#428bca, 20%);
-$clear: #fafafa;
-$body-bg: #F1F0E8;
-$body-color: #111;
-@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap');
-$font-family-base: 'Source Serif Pro', serif;
+@import "variables";
+@import "font";
+@import "images";
+@import "slide-in.css";
+@import "colors";
+@import "../css/text-effects.css";
+@import "../css/footer.css";
 
-$spacers: (
-        0: 0,
-        1: ($spacer * .25),
-        2: ($spacer * .5),
-        3: $spacer,
-        4: ($spacer * 1.5),
-        5: ($spacer * 3),
-        6: ($spacer * 5)
-);
-
-.bg-image {
-  background-image: url('/build/images/events-background.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.rounded-1 {
+  border-radius: 1rem !important;
 }
 
-.pepe {
-  line-height: 1;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: $clear;
+.link {
+  text-decoration: none !important;
 }
+
+
 
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */

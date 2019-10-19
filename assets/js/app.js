@@ -14,6 +14,16 @@ import 'bootstrap'; // adds functions to jQuery
 // uncomment if you have legacy code that needs global variables
 //global.$ = $;
 
+$('.blurred').hover(function () {
+   $(this).children().addClass('text-blur-out');
+   $(this).addClass('transition');
+   $(this).removeClass('blurred');
+}, function(){
+    $(this).children().removeClass('text-blur-out');
+    $(this).addClass('blurred');
+    $(this).addClass('text-focus-in');
+});
+
 $('.dropdown-toggle').dropdown();
 $('.custom-file-input').on('change', function(event) {
     let inputFile = event.currentTarget;
