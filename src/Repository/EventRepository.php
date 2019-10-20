@@ -26,6 +26,7 @@ class EventRepository extends ServiceEntityRepository
         try {
             return $this->createQueryBuilder('e')
                 ->select()
+                ->where('e.startedAt IS NOT NULL')
                 ->orderBy('e.startedAt', 'DESC')
                 ->setMaxResults(1)
                 ->getQuery()
