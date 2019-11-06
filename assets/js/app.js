@@ -10,6 +10,7 @@ import '../scss/app.scss';
 
 import $ from 'jquery';
 import 'bootstrap'; // adds functions to jQuery
+import '@fortawesome/fontawesome-free'; // adds functions to jQuery
 
 // uncomment if you have legacy code that needs global variables
 //global.$ = $;

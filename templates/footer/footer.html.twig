@@ -4,7 +4,7 @@
             <div class="col-md-11 col-lg-6 text-center mt-2 bt-2 mx-2 m-md-0 mt-md-2 p-0 scale-in-top-d-6">
                 <div class="mr-lg-2 bg-gradient-primary rounded-1 text-light">
                     {% if app.request.attributes.get('_route')  == 'events' %}
-                    <p class="h2 m-0 p-3">Eventos anteriores</p>
+                        <a href="{{ path('eventsList') }}" class="link"><p class="h2 m-0 p-3">Eventos anteriores</p></a>
                     {% else %}
                     <p class="h2 m-0 p-3">Contacto</p>
                     {% endif %}

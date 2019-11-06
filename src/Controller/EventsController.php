@@ -23,7 +23,7 @@ class EventsController extends AbstractController
 
 
     /**
-     * @Route("/events", name="events")
+     * @Route("/eventos", name="events")
      */
     public function index(): Response
     {
@@ -32,6 +32,17 @@ class EventsController extends AbstractController
         return $this->render('events/index.html.twig', [
             'controller_name' => 'EventsController',
             'event' => $event,
+        ]);
+    }
+
+    /**
+     * @Route("/eventos/listado", name="eventsList")
+     */
+    public function list(): Response
+    {
+        $events = $this->eventRepository->findAll();
+        return $this->render('events/list.html.twig', [
+            'events' => $events
         ]);
     }
 }
