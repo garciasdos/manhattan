@@ -1,6 +1,6 @@
 FROM php:7.3.6-fpm
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends build-essential  \
