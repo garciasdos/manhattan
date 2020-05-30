@@ -1,11 +1,22 @@
-FROM php:7.3.6-fpm
+FROM php:7.4-fpm
 
 WORKDIR /var/www
 
 RUN apt-get update -qq \
-    && apt-get install -y --no-install-recommends build-essential  \
-    apt-transport-https ca-certificates gnupg2 apt-utils nodejs \
-    git vim wget zip unzip libzip-dev libpq-dev \
+    && apt-get install -y --no-install-recommends \
+    build-essential  \
+    apt-transport-https \
+    ca-certificates \
+    gnupg2 \
+    apt-utils \
+    nodejs \
+    git \
+    vim \
+    wget \
+    zip \
+    unzip \
+    libzip-dev \
+    libpq-dev \
     && docker-php-ext-install zip pdo pdo_pgsql opcache
 
 RUN pecl install xdebug \
@@ -15,7 +26,7 @@ RUN pecl install xdebug \
     && echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.idekey=lafabricadegomas" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.idekey=xperales" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_host=172.17.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
