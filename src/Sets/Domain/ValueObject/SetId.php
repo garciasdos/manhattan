@@ -6,6 +6,6 @@ namespace PowerNav\Sets\Domain\ValueObject;
 
 use PowerNav\Common\Domain\ValueObject\Uuid ;
 
-final class SetId extends  Uuid
+final class SetId extends Uuid
 {
 }

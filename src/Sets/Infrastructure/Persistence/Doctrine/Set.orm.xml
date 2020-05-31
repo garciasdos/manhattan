@@ -10,7 +10,7 @@
         <field name="exerciseName" column="exercise_name" length="50"/>
         <field name="repsNumber" column="reps_number" type="integer"/>
         <field name="rpe" column="rpe" type="rpe"/>
-        <field name="actualRpe" column="actual_rpe" type="rpe"/>
+        <field name="actualRpe" column="actual_rpe" type="rpe" nullable="true"/>
 
         <embedded class="PowerNav\Sets\Domain\ValueObject\Weight" column-prefix="weight_"  name="weight"/>
     </entity>
