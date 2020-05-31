@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace PowerNav\Sets\Infrastructure\Doctrine;
+namespace PowerNav\Sets\Infrastructure\Persistence\Doctrine;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
+use PowerNav\Sets\Domain\ValueObject\RPE;
 
 final class RPEType extends Type
 {
-    private const NAME = 'rpe';
+    private const RPE = 'rpe';
 
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-
+        return $platform->getFloatDeclarationSQL($fieldDeclaration);
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return new RPE
+        return RPE::fromFloat($value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -31,6 +32,6 @@ final class RPEType extends Type
 
     public function getName(): string
     {
-        return self::NAME; // modify to match your constant name
+        return self::RPE;
     }
 }
