@@ -1,0 +1,4 @@
+sets_get:
+  path: /sets
+  controller: PowerNav\Apps\Backend\Controller\Set\SetController
+  methods:  [GET]

@@ -1,6 +1,6 @@
 FROM php:7.4-fpm
 
-WORKDIR /var/www
+WORKDIR /var/www/powernav
 
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
