@@ -19,7 +19,11 @@ final class RPEType extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return RPE::fromFloat($value);
+        if (null === $value) {
+            return null;
+        }
+
+        return RPE::fromFloat((float) $value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)

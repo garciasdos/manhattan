@@ -1,4 +1,4 @@
-index:
-    path: /sets
-    controller: PowerNav\Sets\Infrastructure\Controller\SetsController
+get_set:
+    path: /sets/{id}
+    controller: PowerNav\Sets\Infrastructure\Controller\SetsGetController
     methods: [GET]

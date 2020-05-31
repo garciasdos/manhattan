@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PowerNav\Sets\Domain\ValueObject;
 
-use PowerNav\Sets\Domain\Exception\InvalidRpeException;
+use InvalidArgumentException;
 
 final class RPE
 {
@@ -18,7 +18,7 @@ final class RPE
     }
 
     /**
-     * @throws InvalidRpeException
+     * @throws InvalidArgumentException
      */
     public static function fromFloat(float $value): self
     {
@@ -33,12 +33,12 @@ final class RPE
     }
 
     /**
-     * @throws InvalidRpeException
+     * @throws InvalidArgumentException
      */
     private static function ensureIsValid(float $value): void
     {
-        if (self::MIN_RPE >= $value || self::MAX_RPE <= $value) {
-            throw new InvalidRpeException(sprintf('%s is not a valid RPE. It must be between %s and %s', $value, self::MIN_RPE, self::MAX_RPE));
+        if (self::MIN_RPE > $value || self::MAX_RPE < $value) {
+            throw new InvalidArgumentException(sprintf('%s is not a valid RPE. It must be between %s and %s', $value, self::MIN_RPE, self::MAX_RPE));
         }
     }
 }

@@ -30,7 +30,7 @@ final class Set
     /**
      * @return SetId
      */
-    public function setId(): SetId
+    public function id(): SetId
     {
         return $this->id;
     }

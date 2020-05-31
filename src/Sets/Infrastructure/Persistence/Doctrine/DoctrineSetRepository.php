@@ -21,14 +21,17 @@ final class DoctrineSetRepository implements SetRepository
         $this->entityManager = $entityManager;
     }
 
-    public function findById(SetId $id): Set
+    public function searchById(SetId $id): ?Set
     {
+        /** @var Set $set */
+        $set = $this->entityManager->find(Set::class, $id);
 
+        return $set;
     }
 
     public function save(Set $set): void
     {
         $this->entityManager->persist($set);
-        $this->entityManager->flush($set);
+        $this->entityManager->flush();
     }
 }

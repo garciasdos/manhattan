@@ -8,7 +8,7 @@ use PowerNav\Sets\Domain\ValueObject\SetId;
 
 interface SetRepository
 {
-    public function findById(SetId $id): Set;
+    public function searchById(SetId $id): ?Set;
 
     public function save(Set $set): void;
 }
