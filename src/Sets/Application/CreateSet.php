@@ -20,14 +20,14 @@ final class CreateSet
         $this->setRepository = $setRepository;
     }
 
-    public function __invoke(string $id, string $exerciseName, int $repsNumber, float $weightValue, string $weightUnit, float $desiredRpe, ?float $actualRpe)
+    public function __invoke(string $id, string $exerciseName, int $repsNumber, float $weightValue, string $weightUnit, float $desiredRpe, ?float $actualRpe, bool $isDone)
     {
         $setId = new SetId($id);
         $weight = new Weight($weightValue, WeightUnit::fromString($weightUnit));
         $setRpe = RPE::fromFloat($desiredRpe);
         $setActualRpe = $actualRpe ? RPE::fromFloat($actualRpe) : null;
 
-        $set = new Set($setId, $exerciseName, $repsNumber, $weight, $setRpe, $setActualRpe);
+        $set = new Set($setId, $exerciseName, $repsNumber, $weight, $setRpe, $setActualRpe, $isDone);
 
         $this->setRepository->save($set);
     }

@@ -6,9 +6,7 @@ namespace PowerNav\Sets\Infrastructure\Controller;
 
 use PowerNav\Sets\Application\GetSet;
 use PowerNav\Sets\Domain\Set;
-use PowerNav\Sets\Domain\ValueObject\SetId;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use function Lambdish\Phunctional\apply;
 
 final class SetsGetController

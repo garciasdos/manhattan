@@ -16,8 +16,9 @@ final class Set
     private RPE $rpe;
     private int $repsNumber;
     private ?RPE $actualRpe;
+    private bool $isDone;
 
-    public function __construct(SetId $id, string $exerciseName, int $repsNumber, Weight $weight, RPE $desiredRpe, ?RPE $actualRpe)
+    public function __construct(SetId $id, string $exerciseName, int $repsNumber, Weight $weight, RPE $desiredRpe, ?RPE $actualRpe, bool $isDone)
     {
         $this->id = $id;
         $this->exerciseName = $exerciseName;
@@ -25,6 +26,7 @@ final class Set
         $this->weight = $weight;
         $this->rpe = $desiredRpe;
         $this->actualRpe = $actualRpe;
+        $this->isDone = $isDone;
     }
 
     /**
@@ -73,5 +75,10 @@ final class Set
     public function actualRpe(): ?RPE
     {
         return $this->actualRpe;
+    }
+
+    public function isDone(): bool
+    {
+        return $this->isDone;
     }
 }
